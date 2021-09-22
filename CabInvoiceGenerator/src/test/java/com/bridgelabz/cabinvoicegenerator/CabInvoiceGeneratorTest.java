@@ -1,5 +1,8 @@
 package com.bridgelabz.cabinvoicegenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,5 +47,14 @@ public class CabInvoiceGeneratorTest {
 		InvoiceSummary summary = invoiceGenerator.generateSummary(rides);
 		InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,30.0);
 		Assert.assertEquals(expectedInvoiceSummary,summary);
+	}
+	@Test
+	public void givenUserId_ShouldReturnInvoiceSummary() {
+		String userId = "C1";
+		invoiceGenerator.addUserRide(userId,new Ride(2.0, 5));
+		invoiceGenerator.addUserRide(userId,new Ride(0.1, 1));
+		InvoiceSummary summary = invoiceGenerator.generateSummaryByUserId(userId);
+		InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,30.0);
+		Assert.assertEquals(expectedInvoiceSummary, summary);
 	}
 }
