@@ -6,7 +6,7 @@ import org.junit.Test;
 
 
 public class CabInvoiceGeneratorTest {
-	CabInvoiceGenerator invoiceGenerator;
+	CabInvoiceGenerator invoiceGenerator = null;
 	@Before
 	public void setUp() throws Exception {
 		invoiceGenerator = new CabInvoiceGenerator();
@@ -35,5 +35,14 @@ public class CabInvoiceGeneratorTest {
 		};
 		double fare = invoiceGenerator.calculateFare(rides);
 		Assert.assertEquals(30, fare, 0.0);
+	}
+	@Test
+	public void givenMultipleRides_ShouldReturnInvoiceSummary() {
+		Ride[] rides = { new Ride(2.0,5),
+						 new Ride(0.1,1),
+		};
+		InvoiceSummary summary = invoiceGenerator.generateSummary(rides);
+		InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,30.0);
+		Assert.assertEquals(expectedInvoiceSummary,summary);
 	}
 }
