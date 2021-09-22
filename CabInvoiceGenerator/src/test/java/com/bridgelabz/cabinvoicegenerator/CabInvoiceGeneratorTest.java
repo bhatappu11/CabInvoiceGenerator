@@ -1,13 +1,19 @@
 package com.bridgelabz.cabinvoicegenerator;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 
 public class CabInvoiceGeneratorTest {
+	CabInvoiceGenerator invoiceGenerator;
+	@Before
+	public void setUp() throws Exception {
+		invoiceGenerator = new CabInvoiceGenerator();
+	}
+	
 	@Test
 	public void givenDistanceAndTime_ShouldReturnTotalFare() {
-		CabInvoiceGenerator invoiceGenerator = new CabInvoiceGenerator();
 		double distance = 2.0;
 		int time = 5;
 		double fare = invoiceGenerator.calculateFare(distance,time);
@@ -16,7 +22,6 @@ public class CabInvoiceGeneratorTest {
 	
 	@Test
 	public void givenLessDistanceAndTime_ShouldReturnTotalFare() {
-		CabInvoiceGenerator invoiceGenerator = new CabInvoiceGenerator();
 		double distance = 0.1;
 		int time = 1;
 		double fare = invoiceGenerator.calculateFare(distance,time);
@@ -25,7 +30,6 @@ public class CabInvoiceGeneratorTest {
 	
 	@Test
 	public void givenMultipleRides_ShouldReturnTotalFare() {
-		CabInvoiceGenerator invoiceGenerator = new CabInvoiceGenerator();
 		Ride[] rides = { new Ride(2.0,5),
 						 new Ride(0.1,1),
 		};
